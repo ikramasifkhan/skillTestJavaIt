@@ -9,23 +9,7 @@
     ]
 @endphp
 <x-bred-crumb-componet title='Fees list' :links="$links" />
-<div class="row">
-    <div class="col-md-12">
-        <div class="tile">
-            <form method="POST" action="{{ route('fees.store') }}">
-                @csrf
-                <div class="form-group">
-                    <label for="name">Fees Name</label>
-                    <input class="form-control" name="fees_name" id="name" type="text"  placeholder="Enter fees name">
-                    <small class="form-text text-muted" id="emailHelp">We'll never share your email with anyone else.</small>
-                  </div>
-                  <div class="form-group">
-                      <button type="submit" class="btn btn-primary mb-2">Confirm identity</button>
-                  </div>
-            </form>
-        </div>
-    </div>
-</div>
+
 <div class="row">
     <div class="col-md-12">
       <div class="tile">
@@ -42,16 +26,37 @@
             <tr>
               <th>#</th>
               <th>Fees name</th>
+              <th>Status</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
+              @foreach ($feeses as $fees)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $fees->name }}</td>
+                    <td>
+                        @if($fees->status == 'active')
+                            {{ showStatus('active') }}
+                            @else
+                            {{ showStatus('inactive') }}
+                        @endif
+                    </td>
+                    <td>
+                        @php
+                            $status = $fees->status;
+                            $actions = [
+                                'edit'=>route('fees.edit', $fees->id),
+                                'active'=>route('fees.ActiveInactive', $fees->id),
+                                'inactive'=>route('fees.ActiveInactive', $fees->id),
+                                'delete' =>route('fees.destroy', $fees->id),
+                            ]
+                        @endphp
+                        <x-action-component :actions="$actions" status="{{ $fees->status }}" />
+                    </td>
+                </tr>
+              @endforeach
 
-            </tr>
           </tbody>
         </table>
       </div>

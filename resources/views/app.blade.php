@@ -23,5 +23,50 @@
 
     <script type="text/javascript" src="{{ asset(mix('js/app.js')) }}"></script>
 
+    {!! Toastr::message() !!}
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            toastr.error('{{ $error }}', 'Error', {
+            closeButton: true,
+            progressBar: true,
+            showMethod: 'fadeIn',
+            hideMethod: 'fadeOut',
+            timeOut: 5000,
+            });
+        @endforeach
+    @endif
+
+
+    {{-- ==========================sweet alert start================================= --}}
+    <script>
+        if ($('.delete').length) {
+            $('.delete').on('click', function(event) {
+                var form = $(this).closest("form");
+                // var name = $(this).data("name");
+                event.preventDefault();
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You will not be able to restore it again",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes I want',
+                    customClass: {
+                        confirmButton: 'btn btn-primary',
+                        cancelButton: 'btn btn-outline-danger ml-1'
+                    },
+                    buttonsStyling: false
+                }).then(function(result) {
+                    if (result.value) {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    }
+                });
+            });
+        }
+
+    </script>
+    {{-- ==========================sweet alert end================================= --}}
+
   </body>
 </html>
