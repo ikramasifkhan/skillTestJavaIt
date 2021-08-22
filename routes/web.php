@@ -17,4 +17,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [StudentController::class, 'index'])->name('student.index');
 
+Route::put('/fees/{id}/inactive', [FeesController::class, 'activeInactive'])->name('fees.ActiveInactive');
 Route::resource('/fees', FeesController::class);

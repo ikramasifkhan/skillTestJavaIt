@@ -20,6 +20,7 @@ const mix = require('laravel-mix');
 
 let styles = [
     "public/frontend/css/main.css",
+    "public/frontend/css/toastr.min.css",
 ]
 
 let scripts = [
@@ -28,6 +29,8 @@ let scripts = [
     'public/frontend/js/bootstrap.min.js',
     'public/frontend/js/main.js',
     'public/frontend/js/plugins/pace.min.js',
+    'public/frontend/js/toastr.min.js',
+    'public/frontend/js/sweetalert2.min.js',
 ]
 
 mix.styles(styles, 'public/css/app.css').scripts(scripts, 'public/js/app.js').version()

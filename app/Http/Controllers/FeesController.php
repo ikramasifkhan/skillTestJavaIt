@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FeesRequest;
+use App\Models\Fees;
 use Illuminate\Http\Request;
+
 
 class FeesController extends Controller
 {
@@ -13,7 +16,8 @@ class FeesController extends Controller
      */
     public function index()
     {
-        return view('fees.index');
+        $data['feeses']= Fees::all();
+        return view('fees.index', $data);
     }
 
     /**
@@ -23,7 +27,7 @@ class FeesController extends Controller
      */
     public function create()
     {
-        return view('fees.create');
+        return view('fees.add');
     }
 
     /**
@@ -32,9 +36,10 @@ class FeesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FeesRequest $request)
     {
-        //
+        Fees::create($request->all());
+         return successRedirect('Fees added successfully', 'fees.index');
     }
 
     /**
@@ -56,7 +61,9 @@ class FeesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['fees'] = Fees::findOrFail($id);
+
+        return view('fees.edit', $data);
     }
 
     /**
@@ -66,9 +73,11 @@ class FeesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(FeesRequest $request, $id)
     {
-        //
+        $fees = Fees::findOrFail($id);
+        $fees->update($request->all());
+        return successRedirect('Info update successfully', 'fees.index');
     }
 
     /**
@@ -79,6 +88,23 @@ class FeesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $fees = Fees::findOrFail($id);
+        $fees->delete();
+
+        return successRedirect('Data is removed', 'fees.index');
+    }
+
+    public function activeInactive($id){
+        $fees = Fees::findOrFail($id);
+        if($fees->status == 'active'){
+            $fees->status = 'inactive';
+            $fees->update();
+            return successRedirect('Info inactive successfully', 'fees.index');
+        }
+        if($fees->status == 'inactive'){
+            $fees->status = 'active';
+            $fees->update();
+            return successRedirect('Info active successfully', 'fees.index');
+        }
     }
 }
