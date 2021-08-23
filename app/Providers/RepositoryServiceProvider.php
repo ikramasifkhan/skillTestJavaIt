@@ -27,5 +27,9 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repository\Interfaces\FeesInterface',
             'App\Repository\Repo\FeesRepository'
         );
+        $this->app->bind(
+            'App\Repository\Interfaces\KlassInterface',
+            'App\Repository\Repo\KlassRepo'
+        );
     }
 }

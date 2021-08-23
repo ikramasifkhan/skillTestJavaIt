@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FeesController;
+use App\Http\Controllers\KlassController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,5 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [StudentController::class, 'index'])->name('student.index');
 
-Route::put('/fees/{id}/inactive', [FeesController::class, 'activeInactive'])->name('fees.ActiveInactive');
+Route::put('/class/{id}/status-change', [KlassController::class, 'activeInactive'])->name('class.ActiveInactive');
+Route::resource('/class', KlassController::class);
+
+
+Route::put('/fees/{id}/status-change', [FeesController::class, 'activeInactive'])->name('fees.ActiveInactive');
 Route::resource('/fees', FeesController::class);
