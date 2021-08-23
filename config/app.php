@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         Brian2694\Toastr\ToastrServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
         /*
          * Application Service Providers...
          */

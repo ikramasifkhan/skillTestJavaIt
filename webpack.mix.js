@@ -31,6 +31,8 @@ let scripts = [
     'public/frontend/js/plugins/pace.min.js',
     'public/frontend/js/toastr.min.js',
     'public/frontend/js/sweetalert2.min.js',
+    'public/frontend/js/plugins/jquery.dataTables.min.js',
+    'public/frontend/js/plugins/dataTables.bootstrap.min.js',
 ]
 
 mix.styles(styles, 'public/css/app.css').scripts(scripts, 'public/js/app.js').version()

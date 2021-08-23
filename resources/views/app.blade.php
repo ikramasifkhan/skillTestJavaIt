@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{{ asset(mix('css/app.css')) }}">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    @stack('styles')
   </head>
   <body class="app sidebar-mini">
     @include('partials.header')
@@ -22,6 +23,7 @@
     </main>
 
     <script type="text/javascript" src="{{ asset(mix('js/app.js')) }}"></script>
+    @stack('scripts')
 
     {!! Toastr::message() !!}
     @if ($errors->any())
@@ -67,6 +69,14 @@
 
     </script>
     {{-- ==========================sweet alert end================================= --}}
+
+    {{-- ==========================Datatable start end================================= --}}
+    {{-- <script type="text/javascript">
+        $('#sampleTable').DataTable();
+    </script> --}}
+    {{-- ==========================Datatable  end================================= --}}
+
+
 
   </body>
 </html>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\FeesRequest;
 use App\Models\Fees;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 
 class FeesController extends Controller
@@ -16,8 +17,24 @@ class FeesController extends Controller
      */
     public function index()
     {
-        $data['feeses'] = Fees::all();
-        return view('fees.index', $data);
+        // $data['feeses'] = Fees::all();
+        // return view('fees.index', $data);
+
+        $feeses = Fees::latest();
+        if (\request()->ajax()) {
+            return DataTables::of($feeses)
+                ->addIndexColumn()
+                ->addColumn('status', function ($fees) {
+                    // $status =$fees->status;
+                    return $fees->status;
+                })
+                ->addColumn('action', function ($fees) {
+                    return 'ok';
+                })
+                ->rawColumns(['status', 'action'])
+                ->tojson();
+        }
+        return view('fees.index');
     }
 
     /**
