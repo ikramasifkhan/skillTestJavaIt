@@ -25,8 +25,7 @@ class KlassRequest extends FormRequest
     public function rules()
     {
         return [
-           'name'=>'integer|min:6|max:10|unique:klasses',
-            Rule::unique('klasses', 'name')->ignore($this->klass)
+           'name'=>"integer|min:6|max:10|unique:klasses,name,$this->id"
         ];
     }
 }

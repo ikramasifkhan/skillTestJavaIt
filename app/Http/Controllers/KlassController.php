@@ -95,9 +95,9 @@ class KlassController extends Controller
     public function update(KlassRequest $request, $id)
     {
         $data = ['name'=>$request->name];
-        $this->classRepo->deleteKlass($data, $id);
+        $this->classRepo->updateKlass($data, $id);
 
-        return successRedirect('Info update successfully', 'fees.index');
+        return successRedirect('Info update successfully', 'class.index');
     }
 
     /**
@@ -110,7 +110,7 @@ class KlassController extends Controller
     {
         $this->classRepo->deleteKlass($id);
 
-        return successRedirect('Data is removed', 'fees.index');
+        return successRedirect('Data is removed', 'class.index');
     }
 
     public function activeInactive($id)

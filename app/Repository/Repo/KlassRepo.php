@@ -14,19 +14,19 @@ class KlassRepo implements KlassInterface
         return Klass::create($data);
     }
 
-    public function getAnIntence($feesId){
-        return Klass::findOrFail($feesId);
+    public function getAnIntence($klassId){
+        return Klass::findOrFail($klassId);
     }
-    public function updateKlass($data, $feesId){
-        $fees = $this->getAnIntence($feesId);
+    public function updateKlass($data, $klassId){
+        $fees = $this->getAnIntence($klassId);
         return $fees->update($data);
     }
-    public function deleteKlass($feesId){
-        $fees = $this->getAnIntence($feesId);
+    public function deleteKlass($klassId){
+        $fees = $this->getAnIntence($klassId);
         $fees->delete();
     }
-    public function changeStatusKlass($feesId){
-        $fees = $this->getAnIntence($feesId);
+    public function changeStatusKlass($klassId){
+        $fees = $this->getAnIntence($klassId);
         return activeInactiveChange($fees);
     }
 }
