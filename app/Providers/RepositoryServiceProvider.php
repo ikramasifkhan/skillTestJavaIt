@@ -31,5 +31,13 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repository\Interfaces\KlassInterface',
             'App\Repository\Repo\KlassRepo'
         );
+        $this->app->bind(
+            'App\Repository\Interfaces\GroupInterface',
+            'App\Repository\Repo\GroupRepo'
+        );
+        $this->app->bind(
+            'App\Repository\Interfaces\ClassSectionInterface',
+            'App\Repository\Repo\ClassSectionRepo'
+        );
     }
 }

@@ -27,6 +27,6 @@ class FeesRepository implements FeesInterface
     }
     public function changeStatusFees($feesId){
         $fees = $this->getAnIntence($feesId);
-        return activeInactiveChange($fees);
+        return activeInactiveChange($fees, 'fees.index');
     }
 }

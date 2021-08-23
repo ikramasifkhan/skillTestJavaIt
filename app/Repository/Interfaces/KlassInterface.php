@@ -4,7 +4,8 @@ namespace App\Repository\Interfaces;
 
 interface KlassInterface
 {
-    public function getAllKlass();
+    public function getLatestClass();
+    public function getAllKlassList();
     public function createKlass(array $data);
     public function getAnIntence($klassId);
     public function updateKlass(array $data, $klassId);

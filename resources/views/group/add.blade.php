@@ -4,29 +4,27 @@
 
 @section('content')
     @php
-        $links = [
-            'Class list'=>route('class.index'),
-           'Class edit'=>''
-        ]
+    $links = [
+        'Group list' => route('class.index'),
+        'Group add' => '',
+    ];
     @endphp
-    <x-bred-crumb-componet title='' :links="$links" />
+    <x-bred-crumb-componet title='Add a new group' :links="$links" />
     <div class="row">
         <div class="col-md-12">
             <div class="tile">
-                <form method="POST" action="{{ route('class.update', $class->id)}}">
+                <form method="POST" action="{{ route('group.store') }}">
                     @csrf
-                    @method('PUT')
-
                     <div class="form-group">
-                        <label for="name">Class Name</label>
-                        <input class="form-control" name="id" id="name" type="hidden"  value="{{ $class->id }}">
-                        <input class="form-control" name="name" id="name" type="number"  value="{{ $class->name }}">
-
-                        @if($errors->has('name'))
+                        <label for="name">Group Name</label>
+                        <input class="form-control" placeholder="Group name" name="name" id="name" type="text" min="6"
+                            max="10">
+                        @if ($errors->has('name'))
                             <small class="font-weight-bold text-danger">{{ $errors->first('name') }}</small>
                         @endif
-
                     </div>
+
+                    
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary mb-2">Submit now</button>
                     </div>
@@ -35,4 +33,3 @@
         </div>
     </div>
 @endsection
-

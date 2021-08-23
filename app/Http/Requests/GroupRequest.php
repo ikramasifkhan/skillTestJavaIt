@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class KlassRequest extends FormRequest
+class GroupRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,17 +26,14 @@ class KlassRequest extends FormRequest
         switch ($this->method()) {
             case 'POST':
                 return [
-                    'name' => "integer|min:6|max:10|unique:klasses,name"
+                    'name' => "string|min:4|max:32|unique:groups,name",
                 ];
                 break;
 
             case 'PATCH':
             case 'PUT':
-                // dd($this->id);
                 return [
-                    'name' => "integer|min:6|max:10|unique:klasses,name,{$this->id}"
-                    // 'name' => 'required|unique:categories,name,' . $this->category->id,
-                    // 'title' => "required|unique:posts,title,{$this->post->id}"
+                    'name' => "string|min:4|max:32|unique:groups,name,{$this->id}",
                 ];
                 break;
         }

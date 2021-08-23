@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\KlassRequest;
+use App\Models\Klass;
 use App\Repository\Interfaces\KlassInterface;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -23,7 +24,7 @@ class KlassController extends Controller
      */
     public function index()
     {
-      $classes = $this->classRepo->getAllKlass();
+      $classes = $this->classRepo->getLatestClass();
         if (\request()->ajax()) {
             return DataTables::of($classes)
                 ->addIndexColumn()
@@ -94,6 +95,7 @@ class KlassController extends Controller
      */
     public function update(KlassRequest $request, $id)
     {
+
         $data = ['name'=>$request->name];
         $this->classRepo->updateKlass($data, $id);
 

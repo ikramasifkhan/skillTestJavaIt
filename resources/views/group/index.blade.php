@@ -1,28 +1,29 @@
 @extends('app')
 
-@section('tile', 'Fees List')
+@section('tile', 'Group List')
 
 @section('content')
     @php
     $links = [
-        'Fees list' => '',
+        'Group list' => '',
     ];
     @endphp
-    <x-bred-crumb-componet title='Fees list' :links="$links" />
+    <x-bred-crumb-componet title='Group list' :links="$links" />
 
     <div class="row">
         <div class="col-md-12">
             <div class="tile">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <h3 class="tile-title">Fees List</h3>
+                        <h3 class="tile-title">Group List</h3>
                     </div>
                     <div>
-                        <a class="btn btn-primary icon-btn" href="{{ route('fees.create') }}">{{ bladeIcon('add') }}Add
+                        <a class="btn btn-primary icon-btn" href="{{ route('group.create') }}">{{ bladeIcon('add') }}Add
                             New</a>
                     </div>
                 </div>
                 <table class="table table-bordered table-hover" id="sampleTable">
+
                 </table>
             </div>
         </div>
@@ -37,7 +38,7 @@
                 responsive: true,
                 serverSide: true,
                 processing: true,
-                ajax: '{{ route('fees.index') }}',
+                ajax: '{{ route('group.index') }}',
                 columns: [{
                         data: "DT_RowIndex",
                         title: "SL",
@@ -47,9 +48,10 @@
                     },
                     {
                         data: "name",
-                        title: "Name",
+                        title: "Group Name",
                         searchable: true
                     },
+                    
                     {
                         data: "status",
                         title: "Status",

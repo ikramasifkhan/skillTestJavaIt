@@ -45,15 +45,15 @@ function showStatus($status)
 }
 
 
-function activeInactiveChange($element){
+function activeInactiveChange($element, $route){
     if ($element->status == 'active') {
         $element->status = 'inactive';
         $element->update();
-        return successRedirect('Info inactive successfully', 'fees.index');
+        return successRedirect('Info inactive successfuly', $route);
     }
     if ($element->status == 'inactive') {
         $element->status = 'active';
         $element->update();
-        return successRedirect('Info active successfully', 'fees.index');
+        return successRedirect('Info active successfuly', $route);
     }
 }
