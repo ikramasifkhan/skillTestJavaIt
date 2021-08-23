@@ -22,21 +22,24 @@ function bladeIcon($type){
 
 }
 
-
 function successRedirect($message, $route){
     Toastr::success($message);
     return redirect()->route($route);
 }
 
+function failureRedirect($message, $route){
+    Toastr::error($message);
+    return redirect()->route($route);
+}
 
 function showStatus($status)
 {
     switch ($status){
         case 'active':
-            echo '<span class="badge badge-pill badge-primary">Active</span>';
+            return '<span class="badge badge-pill badge-primary">Active</span>';
             break;
         case 'inactive':
-            echo '<span class="badge badge-pill badge-danger">Iactive</span>';
+            return '<span class="badge badge-pill badge-danger">Iactive</span>';
             break;
     }
 }

@@ -4,12 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\FeesRequest;
 use App\Models\Fees;
+use App\Repository\Interfaces\FeesInterface;
+use App\View\Components\ActionComponent;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
 
 class FeesController extends Controller
 {
+    protected $feesRepo;
+    public function __construct(FeesInterface $feesInterface)
+    {
+        $this->feesRepo = $feesInterface;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,19 +25,17 @@ class FeesController extends Controller
      */
     public function index()
     {
-        // $data['feeses'] = Fees::all();
-        // return view('fees.index', $data);
-
-        $feeses = Fees::latest();
+        $feeses = $this->feesRepo->getAllFees();
         if (\request()->ajax()) {
             return DataTables::of($feeses)
                 ->addIndexColumn()
                 ->addColumn('status', function ($fees) {
                     // $status =$fees->status;
-                    return $fees->status;
+                    // return ;
+                    return showStatus($fees->status);
                 })
                 ->addColumn('action', function ($fees) {
-                    return 'ok';
+                    return view('fees.actionColumn', compact('fees'));
                 })
                 ->rawColumns(['status', 'action'])
                 ->tojson();
@@ -55,7 +61,10 @@ class FeesController extends Controller
      */
     public function store(FeesRequest $request)
     {
-        Fees::create($request->all());
+        $data= [
+           'name'=> $request->name,
+        ];
+        $this->feesRepo->createFees($data);
         return successRedirect('Fees added successfully', 'fees.index');
     }
 
@@ -78,8 +87,7 @@ class FeesController extends Controller
      */
     public function edit($id)
     {
-        $data['fees'] = Fees::findOrFail($id);
-
+        $data['fees'] = $this->feesRepo->getAnIntence($id);
         return view('fees.edit', $data);
     }
 
@@ -92,8 +100,9 @@ class FeesController extends Controller
      */
     public function update(FeesRequest $request, $id)
     {
-        $fees = Fees::findOrFail($id);
-        $fees->update($request->all());
+        $data = ['name'=>$request->name];
+        $this->feesRepo->updateFees($data, $id);
+
         return successRedirect('Info update successfully', 'fees.index');
     }
 
@@ -105,15 +114,13 @@ class FeesController extends Controller
      */
     public function destroy($id)
     {
-        $fees = Fees::findOrFail($id);
-        $fees->delete();
+        $this->feesRepo->deleteFees($id);
 
         return successRedirect('Data is removed', 'fees.index');
     }
 
     public function activeInactive($id)
     {
-        $fees = Fees::findOrFail($id);
-        return activeInactiveChange($fees);
+        return $this->feesRepo->changeStatusFees($id);
     }
 }
