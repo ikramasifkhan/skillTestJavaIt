@@ -7,8 +7,11 @@ use App\Repository\Interfaces\FeesInterface;
 
 class FeesRepository implements FeesInterface
 {
-    public function getAllFees(){
+    public function getLatestFees(){
         return Fees::latest();
+    }
+    public function getAllFees(){
+        return Fees::all();
     }
     public function createFees($data){
         return Fees::create($data);

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClassSectionController;
 use App\Http\Controllers\FeesController;
+use App\Http\Controllers\FeesSetupController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\KlassController;
 use App\Http\Controllers\PaymentController;
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [StudentController::class, 'index'])->name('student.index');
+ Route::get('/', [StudentController::class, 'index']);
 
 Route::put('/class/{id}/status-change', [KlassController::class, 'activeInactive'])->name('class.ActiveInactive');
 Route::resource('/class', KlassController::class);
@@ -33,8 +34,11 @@ Route::resource('/section', ClassSectionController::class);
 Route::put('/student/{id}/status-change', [StudentController::class, 'activeInactive'])->name('student.ActiveInactive');
 Route::resource('/student', StudentController::class);
 
-Route::put('/fees/{id}/status-change', [PaymentController::class, 'activeInactive'])->name('payment.ActiveInactive');
+Route::put('/payment/{id}/status-change', [PaymentController::class, 'activeInactive'])->name('payment.ActiveInactive');
 Route::resource('/payment', PaymentController::class);
 
 Route::put('/fees/{id}/status-change', [FeesController::class, 'activeInactive'])->name('fees.ActiveInactive');
 Route::resource('/fees', FeesController::class);
+
+Route::put('/fees-setup/{id}/status-change', [FeesSetupController::class, 'activeInactive'])->name('fees-setup.ActiveInactive');
+Route::resource('/fees-setup', FeesSetupController::class);

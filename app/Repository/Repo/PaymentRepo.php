@@ -7,25 +7,71 @@ use App\Repository\Interfaces\PaymentInterface;
 
 class PaymentRepo implements PaymentInterface
 {
-    public function getLatestPayment(){
+    public function getLatestPayment()
+    {
         return Payment::latest();
     }
-    public function getAllPaymentList(){
+    public function getAllPaymentList()
+    {
         return Payment::all();
     }
-    public function createPayment($data){
 
+    /**
+     * createPayment
+     *
+     * @param  mixed $data
+     * @return void
+     */
+    public function createPayment($data)
+    {
+        return Payment::create($data);
     }
-    public function getAnIntence($paymentId){
 
+    /**
+     * getAnIntence
+     *
+     * @param  mixed $paymentId
+     * @return void
+     */
+    public function getAnIntence($paymentId)
+    {
+        return Payment::findOrFail($paymentId);
     }
-    public function updatePayment($data, $paymentId){
 
+    /**
+     * updatePayment
+     *
+     * @param  mixed $data
+     * @param  mixed $paymentId
+     * @return object
+     */
+    public function updatePayment($data, $paymentId)
+    {
+        $payment = $this->getAnIntence($paymentId);
+        return $payment->update($data);
     }
-    public function deletePayment($paymentId){
 
+    /**
+     * deletePayment
+     *
+     * @param  mixed $paymentId
+     * @return void
+     */
+    public function deletePayment($paymentId)
+    {
+        $payment = $this->getAnIntence($paymentId);
+        $payment->delete();
     }
-    public function changeStatusPayment($paymentId){
 
+    /**
+     * changeStatusPayment
+     *
+     * @param  mixed $paymentId
+     * @return void
+     */
+    public function changeStatusPayment($paymentId)
+    {
+        $payment = $this->getAnIntence($paymentId);
+        return activeInactiveChange($payment, 'payment.index');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Repository\Interfaces;
 
 interface FeesInterface
 {
+    public function getLatestFees();
     public function getAllFees();
     public function createFees(array $data);
     public function getAnIntence($feesId);

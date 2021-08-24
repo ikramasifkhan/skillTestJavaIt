@@ -41,8 +41,8 @@
 
     {{-- ==========================sweet alert start================================= --}}
     <script>
-        if ($('#delete').length) {
-            $('#delete').on('click', function(event) {
+        if ($('.delete').length) {
+            $('.delete').on('click', function(event) {
                 var form = $(this).closest("form");
                 // var name = $(this).data("name");
                 event.preventDefault();

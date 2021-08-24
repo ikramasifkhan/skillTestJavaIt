@@ -25,7 +25,7 @@ class FeesController extends Controller
      */
     public function index()
     {
-        $feeses = $this->feesRepo->getAllFees();
+        $feeses = $this->feesRepo->getLatestFees();
         if (\request()->ajax()) {
             return DataTables::of($feeses)
                 ->addIndexColumn()

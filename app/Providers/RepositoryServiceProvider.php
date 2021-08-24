@@ -47,5 +47,9 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repository\Interfaces\PaymentInterface',
             'App\Repository\Repo\PaymentRepo'
         );
+        $this->app->bind(
+            'App\Repository\Interfaces\FeesSetupInterface',
+            'App\Repository\Repo\FeesSetupRepo'
+        );
     }
 }
