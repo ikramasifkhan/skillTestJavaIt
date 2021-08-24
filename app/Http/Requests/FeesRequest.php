@@ -25,6 +25,7 @@ class FeesRequest extends FormRequest
     {
         return [
             'name'=>'required|min:2|max:32',
+            'amount'=>'required|integer'
         ];
     }
 }

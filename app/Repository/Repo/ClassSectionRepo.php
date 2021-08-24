@@ -18,6 +18,15 @@ class ClassSectionRepo implements ClassSectionInterface
     }
 
     /**
+     * getAllSection
+     *
+     * @return void
+     */
+    public function getAllSection(){
+        return ClassSection::all();
+    }
+
+    /**
      * createSection
      *
      * @param  mixed $data

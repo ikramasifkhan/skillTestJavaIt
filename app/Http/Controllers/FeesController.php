@@ -63,6 +63,7 @@ class FeesController extends Controller
     {
         $data= [
            'name'=> $request->name,
+            'amount'=>$request->amount
         ];
         $this->feesRepo->createFees($data);
         return successRedirect('Fees added successfully', 'fees.index');
@@ -100,7 +101,10 @@ class FeesController extends Controller
      */
     public function update(FeesRequest $request, $id)
     {
-        $data = ['name'=>$request->name];
+        $data = [
+            'name'=>$request->name,
+            'amount'=>$request->amount
+        ];
         $this->feesRepo->updateFees($data, $id);
 
         return successRedirect('Info update successfully', 'fees.index');

@@ -17,14 +17,17 @@
                 @csrf
                 <div class="form-group">
                     <label for="name">Fees Name</label>
-                    @if(isset($fees))
-                        <input class="form-control" name="name" id="name" type="text"  value="{{ $fees->name }}">
-                    @else
-                        <input class="form-control" name="name" id="name" type="text"  placeholder="Enter fees name">
-                    @endif
-
+                    <input class="form-control" name="name" id="name" type="text"  placeholder="Enter fees name">
                     @if($errors->has('name'))
                         <small class="font-weight-bold text-danger">{{ $errors->first('name') }}</small>
+                    @endif
+
+                  </div>
+                <div class="form-group">
+                    <label for="name">Amount</label>
+                    <input class="form-control" name="amount" id="name" type="number" min="1"  placeholder="Enter amount">
+                    @if($errors->has('amount'))
+                        <small class="font-weight-bold text-danger">{{ $errors->first('amount') }}</small>
                     @endif
 
                   </div>

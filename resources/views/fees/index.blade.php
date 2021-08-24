@@ -51,6 +51,11 @@
                         searchable: true
                     },
                     {
+                        data: "amount",
+                        title: "Amount",
+                        searchable: true
+                    },
+                    {
                         data: "status",
                         title: "Status",
                         orderable: false,

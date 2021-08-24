@@ -39,5 +39,13 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repository\Interfaces\ClassSectionInterface',
             'App\Repository\Repo\ClassSectionRepo'
         );
+        $this->app->bind(
+            'App\Repository\Interfaces\StudentInterface',
+            'App\Repository\Repo\StudentRepo'
+        );
+        $this->app->bind(
+            'App\Repository\Interfaces\PaymentInterface',
+            'App\Repository\Repo\PaymentRepo'
+        );
     }
 }

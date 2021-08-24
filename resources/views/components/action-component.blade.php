@@ -23,9 +23,14 @@
             </form>
         </div>
     @endif
+        @if($actionName == 'show')
+            <div class="mr-1">
+                <a href="{{ $routeName }}" class="btn btn-sm btn-info" title="Show more">{{ bladeIcon('show') }}</a>
+            </div>
+        @endif
         @if($actionName == 'edit')
             <div class="mr-1">
-                <a href="{{ $routeName }}" class="btn btn-sm btn-warning">{{ bladeIcon('edit') }}</a>
+                <a href="{{ $routeName }}" class="btn btn-sm btn-warning" title="Edit it">{{ bladeIcon('edit') }}</a>
             </div>
         @endif
         @if($actionName == 'delete')
@@ -33,7 +38,7 @@
                 <form action="{{ $routeName }}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button class="btn btn-danger btn-sm delete" type="submit" title="Delete Now">
+                    <button class="btn btn-danger btn-sm" id="delete" type="submit" title="Delete Now">
                         {{ bladeIcon('delete') }}
                     </button>
                 </form>

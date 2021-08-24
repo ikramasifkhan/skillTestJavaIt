@@ -26,6 +26,15 @@
                     @endif
 
                   </div>
+                <div class="form-group">
+                    <label for="name">Amount</label>
+                    <input class="form-control" name="amount" id="name" type="number" min="1"  value="{{ $fees->amount }}">
+
+                    @if($errors->has('name'))
+                        <small class="font-weight-bold text-danger">{{ $errors->first('amount') }}</small>
+                    @endif
+
+                  </div>
                   <div class="form-group">
                       <button type="submit" class="btn btn-primary mb-2">Submit now</button>
                   </div>

@@ -12,6 +12,13 @@ interface ClassSectionInterface
     public function getLatestSection();
 
     /**
+     * getAllSection
+     *
+     * @return void
+     */
+    public function getAllSection();
+
+    /**
      * createSection
      *
      * @param  mixed $data

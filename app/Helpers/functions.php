@@ -6,6 +6,9 @@ function bladeIcon($type){
         case 'add':
             echo '<i class="fa fa-plus"></i>';
             break;
+        case 'show':
+            echo '<i class="fa fa-eye"></i>';
+            break;
         case 'edit':
             echo '<i class="fa fa-edit"></i>';
             break;
