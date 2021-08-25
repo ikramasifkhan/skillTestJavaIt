@@ -35,7 +35,7 @@
                                 <label for="name">Gender</label>
 
                                 <select name="gender" class="form-control" id="exampleSelect1">
-                                    <option value="Male">Male</option>
+                                    <option value="male">Male</option>
                                     <option value="female">Female</option>
                                     <option value="other">Other</option>
                                 </select>
@@ -78,7 +78,7 @@
                             <div class="form-group">
                                 <label for="class_id">Academic year</label>
                                 <input type="number" class="form-control" name="year" min="2000" max="2021" step="1" placeholder="Select a year" />
-                                @if ($errors->has('class_id'))
+                                @if ($errors->has('year'))
                                     <small class="font-weight-bold text-danger">{{ $errors->first('year') }}</small>
                                 @endif
                             </div>

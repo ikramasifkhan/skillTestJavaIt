@@ -21,6 +21,7 @@
                             <div class="form-group">
                                 <label for="name">First Name</label>
                                 <input class="form-control" placeholder="First name" name="first_name" id="name" type="text" value="{{$student->first_name}}">
+                                <input name="id"  type="hidden" value="{{$student->id}}">
                                 @if ($errors->has('first_name'))
                                     <small class="font-weight-bold text-danger">{{ $errors->first('first_name') }}</small>
                                 @endif
