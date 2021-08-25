@@ -21,6 +21,9 @@ function bladeIcon($type){
         case 'inactive':
             echo '<i class="icon fa fa-thumbs-o-down"></i>';
             break;
+        case 'print':
+            echo '<i class="icon fa fa-print"></i>';
+            break;
     }
 
 }

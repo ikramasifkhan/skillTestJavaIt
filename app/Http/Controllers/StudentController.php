@@ -6,6 +6,7 @@ use App\Repository\Interfaces\ClassSectionInterface;
 use App\Repository\Interfaces\GroupInterface;
 use App\Repository\Interfaces\KlassInterface;
 use App\Repository\Interfaces\StudentInterface;
+use PDF;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -149,5 +150,11 @@ class StudentController extends Controller
 
     public function activeInactive($id){
         return $this->studentRepo->changeStudentStatus($id);
+    }
+
+    public function print(Request $request){
+         $students = $this->studentRepo->getAllStudent();
+         $pdf = PDF::loadView('student.print', compact('students'));
+         return $pdf->stream('document.pdf');
     }
 }

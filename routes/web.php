@@ -31,6 +31,7 @@ Route::resource('/group', GroupController::class);
 Route::put('/section/{id}/status-change', [ClassSectionController::class, 'activeInactive'])->name('section.ActiveInactive');
 Route::resource('/section', ClassSectionController::class);
 
+Route::get('/student/print', [StudentController::class, 'print'])->name('student.print');
 Route::put('/student/{id}/status-change', [StudentController::class, 'activeInactive'])->name('student.ActiveInactive');
 Route::resource('/student', StudentController::class);
 

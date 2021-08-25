@@ -20,6 +20,10 @@ class StudentRepo implements StudentInterface
             })
             ->get();
     }
+
+    public function getAllStudent(){
+        return Student::with(['klass', 'group', 'section'])->get();
+    }
     public function getAnIntence($studentId){
       return Student::with('klass', 'group', 'section')->findOrFail($studentId);
     }

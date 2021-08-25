@@ -18,6 +18,7 @@
                         <h3 class="tile-title">Students List</h3>
                     </div>
                     <div>
+                        <a class="btn btn-info icon-btn" href="{{ route('student.print') }}" target="_blank">{{ bladeIcon('print') }} Print now</a>
                         <a class="btn btn-primary icon-btn" href="{{ route('student.create') }}">{{ bladeIcon('add') }}Add
                             New</a>
                     </div>
